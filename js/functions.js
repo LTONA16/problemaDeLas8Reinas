@@ -18,14 +18,29 @@ function mostarReina(celda){
 
 function cambiarColor(r,c){
     let celda = document.getElementById("tablero")
-    let r1 = r, c1 = c, r2 =r, c2 = c;
-    let r3 = r, c3=c, r4 = r, c4 = c;
+    let r1 = r, c1 = c, r2 = r, c2 = c;
+    let r3 = r, c3 = c, r4 = r, c4 = c;
     for (let i = 0; i < 8; i++) {
         celda.rows[r].cells[i].style.backgroundColor="red";
         celda.rows[i].cells[c].style.backgroundColor="red";
+
+        if(r1<8 && c1<8){
+            celda.rows[r1++].cells[c1++].style.backgroundColor="red";
+        }
+
+        if(r2<8 && c2>=0){
+            celda.rows[r2++].cells[c2--].style.backgroundColor="red";
+        }
+
+        if(r3>=0 && c3>=0){
+            celda.rows[r3--].cells[c3--].style.backgroundColor="red";
+        }
+
+        if(r4>=0 && c4<8){
+            celda.rows[r4--].cells[c4++].style.backgroundColor="red";
+        }
+        
     }
 }
 
-function limpiar(){
-    
-}
+function limpiar() { [...document.getElementsByTagName("td")].forEach(celda => celda.style.backgroundColor = ""); }

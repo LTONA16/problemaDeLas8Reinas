@@ -1,4 +1,5 @@
 let contador = 0;
+
 function mostarReina(celda){
     if(window.getComputedStyle(celda).backgroundImage=="none"){
         if(contador<8){
@@ -44,3 +45,22 @@ function cambiarColor(r,c){
 }
 
 function limpiar() { [...document.getElementsByTagName("td")].forEach(celda => celda.style.backgroundColor = ""); }
+
+function limpiarImagen() { [...document.getElementsByTagName("td")].forEach(celda => celda.style.backgroundImage = "none"); }
+
+function solucion1(){
+    limpiarImagen();
+    contador = 8;
+    let estilo = `background-image:URL(img/reina.svg); background-size:50px; background-repeat:no-repeat; background-position:center; `;
+    let celdas = document.getElementById("tablero");
+
+    celdas.rows[0].cells[3].style = estilo;
+    celdas.rows[1].cells[6].style = estilo;
+    celdas.rows[2].cells[2].style = estilo;
+    celdas.rows[3].cells[7].style = estilo;
+    celdas.rows[4].cells[1].style = estilo;
+    celdas.rows[5].cells[4].style = estilo;
+    celdas.rows[6].cells[0].style = estilo;
+    celdas.rows[7].cells[5].style = estilo;
+
+}

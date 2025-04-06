@@ -1,5 +1,6 @@
 let contador = 0;
 let imgSeleccionada = "";
+let color = "ff0000"; // Color por defecto
 
 function actualizarImagen(){
     reina = document.getElementById("reina");
@@ -52,8 +53,9 @@ function mostarReina(celda){
     if(window.getComputedStyle(celda).backgroundImage=="none"){
         if(contador<8){
             celda.style = `
-                        background-image:URL(` + imgSeleccionada +`);
-                        background-size:50px;
+                        background-image:URL(${imgSeleccionada});
+                        background-color:#${color};
+                        background-size:auto;
                         background-repeat:no-repeat;
                         background-position:center; 
                         `;
@@ -70,23 +72,23 @@ function cambiarColor(r,c){
     let r1 = r, c1 = c, r2 = r, c2 = c;
     let r3 = r, c3 = c, r4 = r, c4 = c;
     for (let i = 0; i < 8; i++) {
-        celda.rows[r].cells[i].style.backgroundColor="red";
-        celda.rows[i].cells[c].style.backgroundColor="red";
+        celda.rows[r].cells[i].style.backgroundColor = color;
+        celda.rows[i].cells[c].style.backgroundColor = color;
 
         if(r1<8 && c1<8){
-            celda.rows[r1++].cells[c1++].style.backgroundColor="red";
+            celda.rows[r1++].cells[c1++].style.backgroundColor = color;
         }
 
         if(r2<8 && c2>=0){
-            celda.rows[r2++].cells[c2--].style.backgroundColor="red";
+            celda.rows[r2++].cells[c2--].style.backgroundColor = color;
         }
 
         if(r3>=0 && c3>=0){
-            celda.rows[r3--].cells[c3--].style.backgroundColor="red";
+            celda.rows[r3--].cells[c3--].style.backgroundColor = color;
         }
 
         if(r4>=0 && c4<8){
-            celda.rows[r4--].cells[c4++].style.backgroundColor="red";
+            celda.rows[r4--].cells[c4++].style.backgroundColor = color;
         }
         
     }
@@ -98,7 +100,7 @@ function limpiarImagen() { [...document.getElementsByTagName("td")].forEach(celd
 
 function solucion1(){
     contador = 8;
-    let estilo = `background-image:URL(` + imgSeleccionada +`); background-size:auto; background-repeat:no-repeat; background-position:center; `;
+    let estilo = `background-image:URL(${imgSeleccionada}); background-color=#${color}; background-size:auto; background-repeat:no-repeat; background-position:center; `;
     let celdas = document.getElementById("tablero");
 
     celdas.rows[0].cells[3].style = estilo;
@@ -114,7 +116,7 @@ function solucion1(){
 
 function solucion2(){
     contador = 8;
-    let estilo = `background-image:URL(` + imgSeleccionada +`); background-size:auto; background-repeat:no-repeat; background-position:center; `;
+    let estilo = `background-image:URL(${imgSeleccionada}); background-color=#${color}; background-size:auto; background-repeat:no-repeat; background-position:center; `;
     let celdas = document.getElementById("tablero");
 
     celdas.rows[0].cells[3].style = estilo;
@@ -127,9 +129,10 @@ function solucion2(){
     celdas.rows[7].cells[5].style = estilo;
 
 }
+
 function solucion3(){
     contador = 8;
-    let estilo = `background-image:URL(` + imgSeleccionada +`); background-size:auto; background-repeat:no-repeat; background-position:center; `;
+    let estilo = `background-image:URL(${imgSeleccionada}); background-color=#${color}; background-size:auto; background-repeat:no-repeat; background-position:center; `;
     let celdas = document.getElementById("tablero");
 
     celdas.rows[0].cells[3].style = estilo;
@@ -147,6 +150,18 @@ window.addEventListener('DOMContentLoaded', () => {
     actualizarImagen();
     limpiarImagen();
     limpiar();
+    const colorPicker = document.getElementById('colorPicker');
+
+    // Solo si existen los elementos
+    if (colorPicker) {
+        colorPicker.addEventListener('input', (e) => {
+            color = e.target.value;
+            console.log(color);
+        });
+        colorPicker.value = `#${color}`;
+        colorPicker.dispatchEvent(new Event('input'));
+    }
+
     document.getElementById('reina').selectedIndex = 0;
     document.getElementById('solucion').selectedIndex = 0;
 });

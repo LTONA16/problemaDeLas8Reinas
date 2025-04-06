@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Problema De Las 8 Reinas</title>
     <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/output.css">
     <!-- <script src="https://unpkg.com/@tailwindcss/browser@4"></script> -->
     <script src="./js/functions.js"></script>
     <!-- <script src="./js/functionsOfuscado.js"></script>
     <script src="./css/stylesOfuscado.js"></script> -->
-
 </head>
 <body class="bg">
     <h2 class="text-3xl font-bold" style="text-align: center ; color: white; margin-top: 0.5rem; margin-bottom: 0.5rem;">Problema De Las 8 Reinas</h2>
@@ -25,6 +25,10 @@
             <option>Solución 2</option>
             <option>Solución 3</option>
         </select>
+        <div class="flex items-center justify-center mt-4">
+            <p class="text-m font-bold" style="text-align: center ; color: white; margin-top: 0.5rem; margin-bottom: 0.5rem;">Color de lineas de ataque: </p>
+            <input type="color" id="colorPicker" value="ff0000" class="w-8 h-8 border-1 border-white-300 rounded cursor-pointer" onchange="">
+        </div>
     </div>
     <table style="margin: auto; border-collapse: collapse; margin-top: 0.5rem; margin-bottom: 0.5rem;" id="tablero">
         <tr>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problema De Las 8 Reinas</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/output.css">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script src="./js/functions.js"></script>
+    <!-- <script src="./js/functionsOfuscado.js"></script>
+    <script src="./css/stylesOfuscado.js"></script> -->
+</head>
+<body class="bg">
+    <h2 class="text-3xl font-bold" style="text-align: center ; color: white; margin-top: 0.5rem; margin-bottom: 0.5rem;">Problema De Las 8 Reinas</h2>
+    <div class="flex items-center justify-center space-x-1" style="text-align: center; margin-bottom: 0.5rem;">
+        <select class="bg-white rounded" name="" id="reina" onchange="actualizarImagen();">
+            <option selected >Reina</option>
+            <option>Goofy</option>
+            <option>Speedy</option>
+        </select>
+        <select class="bg-white rounded" name="" id="solucion" onchange="mostarSolucion();">
+            <option selected> -- </option>
+            <option>Solución 1</option>
+            <option>Solución 2</option>
+            <option>Solución 3</option>
+        </select>
+        <button class="bg-white hover:bg-white-400 rounded" onclick="reiniciar();"><img src="img/reboot.png" style="height: 1.3rem; width: auto;"></button>
+    </div>
+        <div class="flex items-center justify-center mt-2 space-x-2">
+            <p class="text-m font-bold" style="text-align: center ; color: white; margin-top: 0.5rem; margin-bottom: 0.5rem;">Color de lineas de ataque: </p>
+            <input type="color" id="colorPicker" value="ff0000" class="w-8 h-8 border-1 border-white rounded cursor-pointer" onchange="">
+        </div>
+    <table style="margin: auto; border-collapse: collapse; margin-top: 0.5rem; margin-bottom: 0.5rem;" id="tablero">
+        <tr>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(0,0);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(0,1);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(0,2);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(0,3);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(0,4);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(0,5);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(0,6);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(0,7);" onmouseleave="limpiar();"></td>
+        </tr>
+        <tr>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(1,0);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(1,1);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(1,2);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(1,3);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(1,4);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(1,5);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(1,6);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(1,7);" onmouseleave="limpiar();"></td>
+        </tr>
+        <tr>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(2,0);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(2,1);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(2,2);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(2,3);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(2,4);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(2,5);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(2,6);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(2,7);" onmouseleave="limpiar();"></td>
+        </tr>
+        <tr>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(3,0);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(3,1);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(3,2);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(3,3);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(3,4);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(3,5);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(3,6);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(3,7);" onmouseleave="limpiar();"></td>
+        </tr>
+        <tr>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(4,0);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(4,1);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(4,2);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(4,3);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(4,4);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(4,5);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(4,6);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(4,7);" onmouseleave="limpiar();"></td>
+        </tr>
+        <tr>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(5,0);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(5,1);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(5,2);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(5,3);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(5,4);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(5,5);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(5,6);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(5,7);" onmouseleave="limpiar();"></td>
+        </tr>
+        <tr>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(6,0);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(6,1);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(6,2);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(6,3);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(6,4);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(6,5);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(6,6);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(6,7);" onmouseleave="limpiar();"></td>
+        </tr>
+        <tr>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(7,0);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(7,1);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(7,2);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(7,3);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(7,4);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(7,5);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(7,6);" onmouseleave="limpiar();"></td>
+            <td onclick="mostarReina(this);" onmouseover="cambiarColor(7,7);" onmouseleave="limpiar();"></td>
+        </tr>
+    </table>
+</body>
+</html>

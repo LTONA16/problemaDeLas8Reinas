@@ -1,11 +1,10 @@
 let contador = 0;
 let imgSeleccionada = "";
-let color = "ff0000"; // Color por defecto
+let color = "#ff0000"; // Color por defecto
 
 function actualizarImagen(){
     reina = document.getElementById("reina");
     imagen = reina.options[reina.selectedIndex].value;
-    console.log(imagen);
     switch(imagen){
         case "Reina":
             imgSeleccionada = "img/reina.svg";
@@ -32,14 +31,17 @@ function mostarSolucion(){
     switch (document.getElementById("solucion").value) {
         case "Solución 1":
             limpiar();
+            limpiarImagen();
             solucion1();
             break;
         case "Solución 2":
             limpiar();
+            limpiarImagen();
             solucion2();
             break;
         case "Solución 3":
             limpiar();
+            limpiarImagen();
             solucion3();
             break;
         default:
@@ -54,7 +56,7 @@ function mostarReina(celda){
         if(contador<8){
             celda.style = `
                         background-image:URL(${imgSeleccionada});
-                        background-color:#${color};
+                        background-color:${color};
                         background-size:auto;
                         background-repeat:no-repeat;
                         background-position:center; 
@@ -62,7 +64,8 @@ function mostarReina(celda){
             contador++;
         }
     }else{
-        celda.style = `background-image:none;`;
+        celda.style = `background-image:none;
+                       background-color:${color};`;
         contador--;
     }
 }
@@ -98,9 +101,17 @@ function limpiar() { [...document.getElementsByTagName("td")].forEach(celda => c
 
 function limpiarImagen() { [...document.getElementsByTagName("td")].forEach(celda => celda.style.backgroundImage = "none"); }
 
+function reiniciar(){
+    limpiarImagen();
+    limpiar();
+    contador = 0;
+    document.getElementById("reina").selectedIndex = 0;
+    document.getElementById("solucion").selectedIndex = 0;
+}
+
 function solucion1(){
     contador = 8;
-    let estilo = `background-image:URL(${imgSeleccionada}); background-color=#${color}; background-size:auto; background-repeat:no-repeat; background-position:center; `;
+    let estilo = `background-image:URL(${imgSeleccionada}); background-color=${color}; background-size:auto; background-repeat:no-repeat; background-position:center; `;
     let celdas = document.getElementById("tablero");
 
     celdas.rows[0].cells[3].style = estilo;
@@ -116,35 +127,35 @@ function solucion1(){
 
 function solucion2(){
     contador = 8;
-    let estilo = `background-image:URL(${imgSeleccionada}); background-color=#${color}; background-size:auto; background-repeat:no-repeat; background-position:center; `;
+    let estilo = `background-image:URL(${imgSeleccionada}); background-color=${color}; background-size:auto; background-repeat:no-repeat; background-position:center; `;
     let celdas = document.getElementById("tablero");
 
-    celdas.rows[0].cells[3].style = estilo;
+    celdas.rows[0].cells[4].style = estilo;
     celdas.rows[1].cells[6].style = estilo;
-    celdas.rows[2].cells[2].style = estilo;
-    celdas.rows[3].cells[7].style = estilo;
+    celdas.rows[2].cells[0].style = estilo;
+    celdas.rows[3].cells[3].style = estilo;
     celdas.rows[4].cells[1].style = estilo;
-    celdas.rows[5].cells[4].style = estilo;
-    celdas.rows[6].cells[0].style = estilo;
-    celdas.rows[7].cells[5].style = estilo;
-
+    celdas.rows[5].cells[7].style = estilo;
+    celdas.rows[6].cells[5].style = estilo;
+    celdas.rows[7].cells[2].style = estilo;
 }
+
 
 function solucion3(){
     contador = 8;
-    let estilo = `background-image:URL(${imgSeleccionada}); background-color=#${color}; background-size:auto; background-repeat:no-repeat; background-position:center; `;
+    let estilo = `background-image:URL(${imgSeleccionada}); background-color=${color}; background-size:auto; background-repeat:no-repeat; background-position:center; `;
     let celdas = document.getElementById("tablero");
 
-    celdas.rows[0].cells[3].style = estilo;
-    celdas.rows[1].cells[6].style = estilo;
-    celdas.rows[2].cells[2].style = estilo;
+    celdas.rows[0].cells[1].style = estilo;
+    celdas.rows[1].cells[3].style = estilo;
+    celdas.rows[2].cells[5].style = estilo;
     celdas.rows[3].cells[7].style = estilo;
-    celdas.rows[4].cells[1].style = estilo;
-    celdas.rows[5].cells[4].style = estilo;
-    celdas.rows[6].cells[0].style = estilo;
-    celdas.rows[7].cells[5].style = estilo;
-
+    celdas.rows[4].cells[2].style = estilo;
+    celdas.rows[5].cells[0].style = estilo;
+    celdas.rows[6].cells[6].style = estilo;
+    celdas.rows[7].cells[4].style = estilo;
 }
+
 
 window.addEventListener('DOMContentLoaded', () => {
     actualizarImagen();
@@ -156,9 +167,8 @@ window.addEventListener('DOMContentLoaded', () => {
     if (colorPicker) {
         colorPicker.addEventListener('input', (e) => {
             color = e.target.value;
-            console.log(color);
         });
-        colorPicker.value = `#${color}`;
+        colorPicker.value = color;
         colorPicker.dispatchEvent(new Event('input'));
     }
 
